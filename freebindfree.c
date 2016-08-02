@@ -15,8 +15,10 @@ int socket(int domain, int type, int protocol)
   if(fd < 0)
     return fd;
 
-  int one = 1;
-  setsockopt(fd, SOL_IP, IP_FREEBIND, &one, sizeof(one));
+  if(domain == PF_INET || domain == PF_INET6) {
+    int one = 1;
+    setsockopt(fd, SOL_IP, IP_FREEBIND, &one, sizeof(one));
+  }
 
   return fd;
 }
