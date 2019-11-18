@@ -1,4 +1,4 @@
 all: libfreebindfree.so
 
 lib%.so: %.c
-	gcc -shared -o $@ -ldl $< -fPIC
+	gcc -shared -Wl,--no-as-needed -o $@ -ldl $< -fPIC
